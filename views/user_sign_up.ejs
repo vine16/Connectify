@@ -1,0 +1,12 @@
+<h1> sign up</h1>
+
+
+<!-- sending data to put into the database i.e. POST method -->
+<form action="/users/create" method="POST">
+    <input type="text" name="name" placeholder="Enter Your Name" required>
+    <input type="email" name="email" placeholder="Enter Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    <input type="submit" value="Sign Up">
+</form>

@@ -6,9 +6,11 @@ const homeController = require('../controllers/home_controller');
 
 
 //'/zero/home' will be handled here
-router.get('/home', homeController.bye);
+router.get('/', homeController.home);
+
+router.use('/users', require('./users'));
+
+//for any furter routes, access from here
+//router.use('/routerName', require('/routerfile'));
 
 module.exports = router;
-
-
-
