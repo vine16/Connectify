@@ -1,1 +1,13 @@
-<h1> this is connectify / <%= title %></h1>
+<h1>
+     this is connectify | <%= title %>
+</h1>
+
+<section id="feed-posts">
+    <h4>
+        Posts
+    </h4>
+    <form action="users/create-post" id="new-post-form" method="POST">
+        <textarea name="content" id="new-post-content" cols="30" rows="3" placeholder="What do you want to post?"></textarea>
+        <input type="submit" value="Post">
+    </form>
+</section>

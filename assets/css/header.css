@@ -1,8 +1,23 @@
 header {
-  height: 80px;
-  width: 100%;
+  padding-right: 10px;
   display: flex;
+  justify-content: space-between;
   background-color: #00ACEE;
-  color: black;
+  color: aquamarine;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+header ul {
+  display: flex;
+  width: 150px;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+header li a {
+  color: black;
+  font-family: sans-serif;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
 }

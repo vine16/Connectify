@@ -94,3 +94,8 @@ module.exports.destroySession = function(req, res)
         res.redirect('/');
     });
 }
+
+module.exports.createPost = function(req, res)
+{
+    
+}

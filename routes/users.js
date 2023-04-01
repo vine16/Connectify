@@ -19,6 +19,8 @@ router.post('/create', usersController.create);
 
 router.get('/sign-out', usersController.destroySession);
 
+
+router.post('/create-post', usersController.createPost);
 //use passport as middleware to authenticate
 //passport.authenticate -> abhi jo user aaya hai vo authenticated hai ya nhi
 // If the authentication is successful, the passport.authenticate middleware calls the next()
