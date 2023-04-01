@@ -1,17 +1,24 @@
 <!-- the common part for all webpages -->
-<html>
+<html>  
     <head>
         <title>
             <%= title %>
         </title>
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/user_profile.css">
+        <link rel="stylesheet" href="/css/user_sign_in.css">
+        <link rel="stylesheet" href="/css/user_sign_up.css">
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="stylesheet" href="/css/header.css">
         <%- style %>
     </head>
     <body>
         <%- include('_header.ejs') %>
-        <%- body %>
+        <main>
+            <%- body %>
+        </main>
         <%- include('_footer.ejs') %>
-
         <%- script %>
     </body>
-</html>
+</html> 

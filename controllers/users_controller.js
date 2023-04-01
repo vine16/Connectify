@@ -3,26 +3,23 @@ const User = require('../models/users');
 //browser -> router -> controller
 module.exports.profile = function(req, res)
 {
-    return res.end('<h1>user profile </h1>');
-}
-
-module.exports.post = function(req, res)
-{
-    return res.end('this is suthri post by the khusbhoo');
-}
-
-
-module.exports.person = function(req, res)
-{
-    return res.render('user_profile',{
-        'title' : 'user profile'
+    return res.render('user_profile',
+    {
+        title: 'User Profile'
     })
 }
+
+
+
 
 
 //render the sign up page
 module.exports.signUp = function(req, res)
 {
+    if(req.isAuthenticated())
+    {
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_up',{
         'title': 'connectify | sign up'
     })
@@ -32,6 +29,10 @@ module.exports.signUp = function(req, res)
 //render the sign in page
 module.exports.signIn = function(req, res)
 {
+    if(req.isAuthenticated())
+    {
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in',{
         'title' : 'connectify | sign in'
     })
@@ -71,13 +72,8 @@ module.exports.create = async function(req, res)
 
     }
 
-    console.log(req.body);
     console.log("user already present, Please Sign In");
-    return res.redirect('/users/sign-in');
-
-
-
-    
+    return res.redirect('/users/sign-in');    
 }
 
 
@@ -85,4 +81,16 @@ module.exports.create = async function(req, res)
 module.exports.createSession = function(req, res)
 {
     //TODO later
+    return res.redirect('/users/profile');
+}
+
+
+module.exports.destroySession = function(req, res)
+{
+    // Removing the user’s session cookie to remove the identity 
+    //provided by passport
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
 }

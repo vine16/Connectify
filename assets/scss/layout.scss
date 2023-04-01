@@ -1,0 +1,9 @@
+// : indicates that the original directory structure of the source files should be preserved in the output directory.
+// --watch -> watch continuesly, else once compile then CTRL + C
+$backColor: cyan;
+
+body{
+    margin: 0;
+    text-align: center;
+    background-color: $backColor;
+}
