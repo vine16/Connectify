@@ -95,7 +95,3 @@ module.exports.destroySession = function(req, res)
     });
 }
 
-module.exports.createPost = function(req, res)
-{
-    
-}

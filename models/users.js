@@ -2,11 +2,11 @@ const mongoose = require('mongoose'); //using mongoose library
 
 const userSchema = mongoose.Schema({
     //fields and their types and validations
-    email:{
-        type: String,
-        required: true,
-        unique: true
-    }, 
+    email:{                         
+        type: String,               
+        required: true,             
+        unique: true                
+    },                                  
     password:{
         type: String,
         required : true

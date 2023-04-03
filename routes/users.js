@@ -2,7 +2,6 @@
 //passprot.checkAuthenticated -> custom function, check if user is already authencticated or not
 //route for user
 const express = require('express');
-// const { use } = require('passport');
 
 const router = express.Router();
 const passport = require('passport');
@@ -19,8 +18,6 @@ router.post('/create', usersController.create);
 
 router.get('/sign-out', usersController.destroySession);
 
-
-router.post('/create-post', usersController.createPost);
 //use passport as middleware to authenticate
 //passport.authenticate -> abhi jo user aaya hai vo authenticated hai ya nhi
 // If the authentication is successful, the passport.authenticate middleware calls the next()
