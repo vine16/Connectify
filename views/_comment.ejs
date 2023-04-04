@@ -1,0 +1,16 @@
+<li>
+`   <p>
+        <%= comment.content %>
+        <br>
+        <small>
+            <%= comment.user.name %>
+        </small>
+        <!-- jis use ne sign in kr rkha hai agr vo usi ka comment hai -->
+        <!-- jis user ko post hai agr vo kisi ka comment delete krna chahta hai -->
+        <% if(locals.user && comment.user._id == locals.user.id || locals.user && comment.post.user._id == locals.user.id) {%>
+            <small>            
+                <a href="/comments/destroy/<%= comment.id %>">XC</a>
+            </small>
+        <%}%>
+    </p>
+</li>

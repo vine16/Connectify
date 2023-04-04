@@ -1,15 +1,46 @@
 const User = require('../models/users');
 
 //browser -> router -> controller
-module.exports.profile = function(req, res)
+module.exports.profile = async function(req, res)
 {
+    let user;
+
+    try
+    {
+        user = await User.findById(req.params.id);
+    }
+    catch(err)
+    {
+        console.log(err, 'cannot find user');
+    }
     return res.render('user_profile',
     {
-        title: 'User Profile'
+        title: 'User Profile',
+        profile_user: user
     })
 }
 
-
+module.exports.update = async function(req, res)
+{
+    //signedIn user == id of profile user trying to update
+    if(req.user.id == req.params.id)
+    {
+        // User.findByIdAndUpdate(req.params.id, {name: req.body.name, email: req.body.email});
+        try
+        {
+            await User.findByIdAndUpdate(req.params.id, req.body);
+        }
+        catch(err)
+        {
+            console.log(err, 'error in updating info');
+        }
+        return res.redirect('back');
+    }
+    else //someone fiddling with our website
+    {
+        return res.status(401).send('Unauthorized');
+    }
+}
 
 
 

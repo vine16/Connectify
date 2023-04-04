@@ -13,9 +13,10 @@ module.exports.home =  async function(req, res){
         posts = await Post.find({}).populate('user')
         .populate({
             path: 'comments',
-            populate:{
-                path: 'user'
-            }
+            populate:[
+                {path: 'user'},
+                {path: 'post'}
+        ]
         });
         // posts =  await Post.find({}).populate('user').exec();
     }
@@ -24,10 +25,18 @@ module.exports.home =  async function(req, res){
         console.log(err, 'error in getting posts from database');
     }
 
+    try
+    {
 
-    
+        users = await User.find({});
+    }
+    catch(err)
+    {
+        console.log(err, 'error in finding all the users');
+    }
     return res.render('home', {
         title: "home",
         posts: posts,
+        all_users: users
     });
 }
