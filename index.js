@@ -1,12 +1,10 @@
 const express = require('express');
+// taking the cookie header from the request, parsing the cookie values, and adding them as an object to the req object under req.cookies.
 const cookieParser = require('cookie-parser');
-
 
 const app = express();
 const port = 2000;
 const expressLayouts = require('express-ejs-layouts')//to render views that use layouts.
-
-
 
 const db = require('./config/mongoose');
 
@@ -15,6 +13,8 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-startegy'); //configures local strategy for passport.js to use
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
+const customMdwr = require('./config/middleware');
 
 app.use(express.urlencoded({extended:true}));
 
@@ -28,17 +28,17 @@ app.use(expressLayouts)
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-
 app.use(express.static('./assets'));
 
 
+//make the uploads path available to browser
+//server them as static files
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
 //setting up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
-
-
 
 
 //if not specified, will by defualt for the layout file inside the views -> layouts -> layout.ejs
@@ -68,6 +68,13 @@ app.use(passport.session());//deserialize the user's information from the sessio
 //setting the currently authenticated user on the req.user property, based on the data stored in the session. This allows the user information to be easily accessed in any subsequent middleware or route handler that needs it.
 app.use(passport.setAuthenticatedUser);
 
+//should be used after the session config
+//flash msgs will be set inside the cookie which stores the session information
+app.use(flash());
+
+//once retrieved, they will get deleted from the session object
+//so that we only see them once
+app.use(customMdwr.setFlash);
 
 //user express route
 //will be use for each type of request at '/'
